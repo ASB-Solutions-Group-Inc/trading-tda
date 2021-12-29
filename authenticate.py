@@ -4,6 +4,9 @@ import dateutil
 import httpx
 import sys
 import tda
+import pandas
+import numpy
+import json
 
 from tda.auth import easy_client
 from tda.client import Client
@@ -28,14 +31,22 @@ def make_webdriver():
     # atexit.register(lambda: driver.quit())
     return driver
 
+def getAccount(c, ACCOUNT_ID):
+    account_information = c.get_account(ACCOUNT_ID,fields=Client.Account.Fields.POSITIONS)
+    assert account_information.status_code == httpx.codes.OK
+    account = pandas.DataFrame.from_dict(account_information.json())
+    return account
+
 c = tda.auth.easy_client(
     API_KEY,
     REDIRECT_URI,
     TOKEN_PATH,
     make_webdriver)
 
-account_information = c.get_account(ACCOUNT_ID, fields=positions )
-print(account_information)
+#account_positions = tda.client.Client.Account.get_account()
+
+account = getAccount(c, ACCOUNT_ID)
+print(account)
 
 resp = c.get_price_history('AAPL',
         period_type=Client.PriceHistory.PeriodType.YEAR,
@@ -44,5 +55,5 @@ resp = c.get_price_history('AAPL',
         frequency=Client.PriceHistory.Frequency.DAILY)
 assert resp.status_code == httpx.codes.OK
 history = resp.json()
-print(history)
+#print(history)
 # tda.auth.client_from_login_flow(webdriver, "VXAAOMGXTLGR30JJ2UIOSVAUYARPC39H", "http://localhost", "/", redirect_wait_time_seconds=0.1, max_waits=3000, asyncio=False, token_write_func=None)
