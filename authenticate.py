@@ -12,6 +12,7 @@ import json
 from tda.auth import easy_client
 from tda.client import Client
 from setup import *
+from arima import calculate_arima as arima
 
 
 data = numpy.array(['ticker','open','high','low','close','volume','date'])
@@ -62,10 +63,11 @@ def getHistoricalData(dk, portfolio_ticker):
                         'low': i['low'],
                         'volume': i['volume'],
                         'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
-    dk['date'] = pandas.to_datetime(dk['date'])
-    dk.sort_values('date', inplace=True)
-    dk.set_index('date', inplace=True)
+    # dk['date'] = pandas.to_datetime(dk['date'])
+    # dk.sort_values('date', inplace=True)
+    # dk.set_index('date', inplace=True)
     dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
+    arima('y',portfolio=portfolio_ticker)
     return dk
 
 #account_positions = tda.client.Client.Account.get_account()
