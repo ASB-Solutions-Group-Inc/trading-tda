@@ -17,6 +17,14 @@ bq load --autodetect --replace --source_format=CSV trading.trading_data ADBE.csv
 
 ls | while read line; do bq load --autodetect --noreplace --source_format=CSV trading.trading_data "$line"; done;
 
+## Loading files to GCS or use it from the same folder where you saved it 
+## Finding ARIMA 
+9 pip install statsmodels
+10 python arima.py y ALL (Debug Mode) 
+    Parameters :
+        Debug (y or n)
+        Portfolio Name : (ALL)
+11  pip install matplotlib
 ## Reference 
 1. https://tda-api.readthedocs.io/en/latest/order-templates.html
 2. https://selenium-python.readthedocs.io/installation.html

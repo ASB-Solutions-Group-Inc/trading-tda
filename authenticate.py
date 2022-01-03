@@ -62,6 +62,9 @@ def getHistoricalData(dk, portfolio_ticker):
                         'low': i['low'],
                         'volume': i['volume'],
                         'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
+    dk['date'] = pandas.to_datetime(dk['date'])
+    dk.sort_values('date', inplace=True)
+    dk.set_index('date', inplace=True)
     dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
     return dk
 
@@ -83,6 +86,10 @@ def my_function(row):
 data = numpy.array(['ticker','open','high','low','close','volume','date'])      
 dk = pandas.DataFrame(columns=data)
 dk = dk.append(portfolio.apply(my_function, axis=1),ignore_index=True)
+
+print(dk.count)
+
+
 dk.to_csv("all-holdings.csv",index=False)
 
 
