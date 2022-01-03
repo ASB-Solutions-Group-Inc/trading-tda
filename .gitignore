@@ -8,7 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-setup.txt
+setup.py
 build/
 output/
 all-holdings.csv

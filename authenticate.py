@@ -11,6 +11,7 @@ import json
 # TD Ameritrade imports 
 from tda.auth import easy_client
 from tda.client import Client
+from setup import *
 
 
 data = numpy.array(['ticker','open','high','low','close','volume','date'])
