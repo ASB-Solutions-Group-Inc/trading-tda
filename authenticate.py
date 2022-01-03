@@ -1,24 +1,31 @@
 import atexit
 import datetime
 import dateutil
+from pandas.core.frame import DataFrame
 import httpx
 import sys
 import tda
 import pandas
 import numpy
 import json
-
+# TD Ameritrade imports 
 from tda.auth import easy_client
 from tda.client import Client
 
+#constant 
 API_KEY = 'VXAAOMGXTLGR30JJ2UIOSVAUYARPC39H@AMER.OAUTHAP'
 REDIRECT_URI = 'https://127.0.0.1:8080'
 TOKEN_PATH = 'ameritrade-credentials.json'
 YOUR_BIRTHDAY = datetime.datetime(year=1981, month=1, day=25)
 SP500_URL = "https://tda-api.readthedocs.io/en/latest/_static/sp500.txt"
 ACCOUNT_ID = "279378043"
+data = numpy.array(['ticker','open','high','low','close','volume','date'])
+#index = numpy.array(['ticker','date'])               
+dk = pandas.DataFrame( columns=data)
 
-
+def importPortfolio():
+    df = pandas.read_csv ('my-5-start-export.csv')
+    return df
 
 def make_webdriver():
     # Import selenium here because it's slow to import
@@ -43,17 +50,47 @@ c = tda.auth.easy_client(
     TOKEN_PATH,
     make_webdriver)
 
+def getHistoricalData(dk, portfolio_ticker):
+    resp = c.get_price_history(portfolio_ticker,
+        period_type=Client.PriceHistory.PeriodType.YEAR,
+        period=Client.PriceHistory.Period.TWENTY_YEARS,
+        frequency_type=Client.PriceHistory.FrequencyType.DAILY,
+        frequency=Client.PriceHistory.Frequency.DAILY)
+    assert resp.status_code == httpx.codes.OK
+    data_hist = pandas.DataFrame.from_dict(resp.json())
+    #print(data_hist['candles'][0])
+    for i in data_hist['candles']:
+        dk = dk.append({'ticker': portfolio_ticker,
+                        'open': i['open'],
+                        'high': i['high'],
+                        'close' : i['close'],
+                        'low': i['low'],
+                        'volume': i['volume'],
+                        'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
+    dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
+    return dk
+
 #account_positions = tda.client.Client.Account.get_account()
 
 account = getAccount(c, ACCOUNT_ID)
 print(account)
 
-resp = c.get_price_history('AAPL',
-        period_type=Client.PriceHistory.PeriodType.YEAR,
-        period=Client.PriceHistory.Period.TWENTY_YEARS,
-        frequency_type=Client.PriceHistory.FrequencyType.DAILY,
-        frequency=Client.PriceHistory.Frequency.DAILY)
-assert resp.status_code == httpx.codes.OK
-history = resp.json()
-#print(history)
-# tda.auth.client_from_login_flow(webdriver, "VXAAOMGXTLGR30JJ2UIOSVAUYARPC39H", "http://localhost", "/", redirect_wait_time_seconds=0.1, max_waits=3000, asyncio=False, token_write_func=None)
+portfolio = importPortfolio()
+
+def my_function(row):
+    data = numpy.array(['ticker','open','high','low','close','volume','date'])      
+    dk = pandas.DataFrame( columns=data)
+    if (row[1] != "Symbol" ):
+        dk = dk.append(getHistoricalData(dk, row[1]))
+    return dk
+        
+    
+data = numpy.array(['ticker','open','high','low','close','volume','date'])      
+dk = pandas.DataFrame(columns=data)
+dk = dk.append(portfolio.apply(my_function, axis=1),ignore_index=True)
+dk.to_csv("all-holdings.csv",index=False)
+
+
+
+
+
