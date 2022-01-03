@@ -12,13 +12,7 @@ import json
 from tda.auth import easy_client
 from tda.client import Client
 
-#constant 
-API_KEY = 'VXAAOMGXTLGR30JJ2UIOSVAUYARPC39H@AMER.OAUTHAP'
-REDIRECT_URI = 'https://127.0.0.1:8080'
-TOKEN_PATH = 'ameritrade-credentials.json'
-YOUR_BIRTHDAY = datetime.datetime(year=1981, month=1, day=25)
-SP500_URL = "https://tda-api.readthedocs.io/en/latest/_static/sp500.txt"
-ACCOUNT_ID = "279378043"
+
 data = numpy.array(['ticker','open','high','low','close','volume','date'])
 #index = numpy.array(['ticker','date'])               
 dk = pandas.DataFrame( columns=data)

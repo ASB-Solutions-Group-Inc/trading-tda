@@ -8,7 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+setup.txt
 build/
+output/
+all-holdings.csv
 develop-eggs/
 dist/
 downloads/
