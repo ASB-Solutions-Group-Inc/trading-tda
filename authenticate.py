@@ -65,13 +65,13 @@ def getHistoricalData(dk, portfolio_ticker,reload,debug):
                             'low': i['low'],
                             'volume': i['volume'],
                             'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
-        dk = calculate_rsi(portfolio_ticker)
+        dk = calculate_rsi(dk,portfolio_ticker,debug)
         # dk['date'] = pandas.to_datetime(dk['date'])
         # dk.sort_values('date', inplace=True)
         # dk.set_index('date', inplace=True)
         dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
     dt_portfolio = converttodf(portfolio_ticker)
-    dt_portfolio = calculate_rsi(dt_portfolio,portfolio_ticker,'y')
+    dt_portfolio = calculate_rsi(dt_portfolio,portfolio_ticker,debug)
     #calculate_arima(dt_portfolio,debug,portfolio=portfolio_ticker)
     return dk
 
