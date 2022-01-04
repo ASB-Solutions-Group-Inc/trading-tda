@@ -15,13 +15,35 @@ from statsmodels.graphics.tsaplots import plot_pacf
 # import sys
 # debug=sys.argv[1]
 # portfolio=sys.argv[2]
-
-def calculate_arima (debug,portfolio) :
+def converttodf (portfolio):
     df = pd.read_csv('output/' + portfolio + '.csv')
-
     df['date'] = pd.to_datetime(df['date'])
     df.sort_values('date', inplace=True)
     df.set_index('date', inplace=True)
+    return df
+
+def calculate_rsi(df,portfolio,debug):
+    delta = df['close'].diff()
+    up = delta.clip(lower=0)
+    down = -1*delta.clip(upper=0)
+    ema_up = up.ewm(com=13, adjust=False).mean()
+    ema_down = down.ewm(com=13, adjust=False).mean()
+    rs = ema_up/ema_down
+    df['RSI'] = 100 - (100/(1 + rs))
+    print(df.tail())
+    return df
+
+def calculate_arima (df, debug,portfolio) :
+    # df = pd.read_csv('output/' + portfolio + '.csv')
+
+    # df['date'] = pd.to_datetime(df['date'])
+    # df.sort_values('date', inplace=True)
+    # df.set_index('date', inplace=True)
+
+    # if calculate_rsi_only == 'y':
+    #     rs = calculate_rsi(df,portfolio,debug)
+    #     print(rs.tail())
+    #     return rs
 
     if debug == 'y':
         print(df.shape)
@@ -39,9 +61,9 @@ def calculate_arima (debug,portfolio) :
     df_week.dropna(inplace=True)
     plt.figure(figsize=(12, 6))
     plt.title('weekly returns')
-    plt.plot(df_week.weekly_ret, lable='weekly return')
+    plt.plot(df.close, label='weekly return')
     plt.savefig('output/plot/' + portfolio + '_return.png')
-    df_week.weekly_ret.plot(kind='line', figsize=(12, 6))
+    #df_week.weekly_ret.plot(kind='line', figsize=(12, 6))
     udiff = df_week.drop(['close'], axis=1)
 
     if debug == 'y':

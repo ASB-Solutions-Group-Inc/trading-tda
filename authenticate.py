@@ -12,7 +12,7 @@ import json
 from tda.auth import easy_client
 from tda.client import Client
 from setup import *
-from arima import calculate_arima as arima
+from arima import * 
 
 
 data = numpy.array(['ticker','open','high','low','close','volume','date'])
@@ -46,28 +46,33 @@ c = tda.auth.easy_client(
     TOKEN_PATH,
     make_webdriver)
 
-def getHistoricalData(dk, portfolio_ticker):
-    resp = c.get_price_history(portfolio_ticker,
-        period_type=Client.PriceHistory.PeriodType.YEAR,
-        period=Client.PriceHistory.Period.TWENTY_YEARS,
-        frequency_type=Client.PriceHistory.FrequencyType.DAILY,
-        frequency=Client.PriceHistory.Frequency.DAILY)
-    assert resp.status_code == httpx.codes.OK
-    data_hist = pandas.DataFrame.from_dict(resp.json())
-    #print(data_hist['candles'][0])
-    for i in data_hist['candles']:
-        dk = dk.append({'ticker': portfolio_ticker,
-                        'open': i['open'],
-                        'high': i['high'],
-                        'close' : i['close'],
-                        'low': i['low'],
-                        'volume': i['volume'],
-                        'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
-    # dk['date'] = pandas.to_datetime(dk['date'])
-    # dk.sort_values('date', inplace=True)
-    # dk.set_index('date', inplace=True)
-    dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
-    arima('y',portfolio=portfolio_ticker)
+def getHistoricalData(dk, portfolio_ticker,reload,debug):
+    print(portfolio_ticker)
+    if (reload == 'y'):
+        resp = c.get_price_history(portfolio_ticker,
+            period_type=Client.PriceHistory.PeriodType.YEAR,
+            period=Client.PriceHistory.Period.TWENTY_YEARS,
+            frequency_type=Client.PriceHistory.FrequencyType.DAILY,
+            frequency=Client.PriceHistory.Frequency.DAILY)
+        assert resp.status_code == httpx.codes.OK
+        data_hist = pandas.DataFrame.from_dict(resp.json())
+        #print(data_hist['candles'][0])
+        for i in data_hist['candles']:
+            dk = dk.append({'ticker': portfolio_ticker,
+                            'open': i['open'],
+                            'high': i['high'],
+                            'close' : i['close'],
+                            'low': i['low'],
+                            'volume': i['volume'],
+                            'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
+        dk = calculate_rsi(portfolio_ticker)
+        # dk['date'] = pandas.to_datetime(dk['date'])
+        # dk.sort_values('date', inplace=True)
+        # dk.set_index('date', inplace=True)
+        dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
+    dt_portfolio = converttodf(portfolio_ticker)
+    dt_portfolio = calculate_rsi(dt_portfolio,portfolio_ticker,'y')
+    #calculate_arima(dt_portfolio,debug,portfolio=portfolio_ticker)
     return dk
 
 #account_positions = tda.client.Client.Account.get_account()
@@ -76,23 +81,14 @@ account = getAccount(c, ACCOUNT_ID)
 print(account)
 
 portfolio = importPortfolio()
+data = numpy.array(['ticker','open','high','low','close','volume','date'])      
+dk = pandas.DataFrame( columns=data)
+for row in range(len(portfolio)):
+    getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,DEBUG)
 
-def my_function(row):
-    data = numpy.array(['ticker','open','high','low','close','volume','date'])      
-    dk = pandas.DataFrame( columns=data)
-    if (row[1] != "Symbol" ):
-        dk = dk.append(getHistoricalData(dk, row[1]))
-    return dk
         
     
-data = numpy.array(['ticker','open','high','low','close','volume','date'])      
-dk = pandas.DataFrame(columns=data)
-dk = dk.append(portfolio.apply(my_function, axis=1),ignore_index=True)
 
-print(dk.count)
-
-
-dk.to_csv("all-holdings.csv",index=False)
 
 
 
