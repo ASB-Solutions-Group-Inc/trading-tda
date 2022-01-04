@@ -6,6 +6,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
+import pandas_ta as pta 
 import statsmodels.api as sm
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.graphics.tsaplots import plot_acf
@@ -22,16 +23,13 @@ def converttodf (portfolio):
     df.set_index('date', inplace=True)
     return df
 
-def calculate_rsi(df,portfolio,debug):
-    delta = df['close'].diff()
-    up = delta.clip(lower=0)
-    down = -1*delta.clip(upper=0)
-    ema_up = up.ewm(com=13, adjust=False).mean()
-    ema_down = down.ewm(com=13, adjust=False).mean()
-    rs = ema_up/ema_down
-    df['RSI'] = 100 - (100/(1 + rs))
-    print(df.tail())
-    return df
+def calculate_rsi(ticker,portfolio,debug):
+    ticker['rsi'] = pta.rsi(ticker['close'],timeperiod=13)
+    ticker['Signal'] = 'KEEP'
+    ticker.loc[ticker['rsi'] > 70, 'Signal'] = 'SELL'
+    ticker.loc[ticker['rsi'] < 30, 'Signal'] = 'BUY'
+    print(ticker.tail())
+    return ticker
 
 def calculate_arima (df, debug,portfolio) :
     # df = pd.read_csv('output/' + portfolio + '.csv')

@@ -3,23 +3,50 @@ import csv
 import numpy as np
 from setup import *
 
+## Import to BQ 
+import subprocess
+
+def query_example(): 
+    cmd =("""bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
+    subprocess.call(cmd,shell=True)
+query_example()
+
+import glob, os
+os.chdir("output")
+for file in glob.glob("*.csv"):
+    if file != "ADBE.csv":
+        cmd =("""bq load --autodetect --noreplace --source_format=CSV trading.trading_data """ + file)
+        subprocess.call(cmd,shell=True)
+
+
+
+
+
+
+
+
+
+
+# import pandas_ta as pta 
+
 # import pandas_datareader as pdr
 # from datetime import datetime
 
 
-# ticker = pdr.get_data_yahoo("TWTR", datetime(2020, 1, 1))
-# print(ticker.head())
-# print(ticker.shape)
+# ticker = pdr.get_data_yahoo("MANH", datetime(2020, 1, 1))
 
-def importPortfolio():
-    df = pd.read_csv ('my-5-start-export.csv')
-    return df
+# ticker['rsi'] = pta.rsi(ticker['Close'],timeperiod=13)
+# print(ticker.tail())
 
-portfolio = importPortfolio()
-data = np.array(['ticker','open','high','low','close','volume','date'])      
-dk = pd.DataFrame( columns=data)
-for row in range(len(portfolio)):
-    print(portfolio.loc[row,"Symbol"])
+# def importPortfolio():
+#     df = pd.read_csv ('my-5-start-export.csv')
+#     return df
+
+# portfolio = importPortfolio()
+# data = np.array(['ticker','open','high','low','close','volume','date'])      
+# dk = pd.DataFrame( columns=data)
+# for row in range(len(portfolio)):
+#     print(portfolio.loc[row,"Symbol"])
 
 
 # print(API_KEY)
