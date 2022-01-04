@@ -9,14 +9,18 @@ import subprocess
 def query_example(): 
     cmd =("""bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
     subprocess.call(cmd,shell=True)
-query_example()
+
 
 import glob, os
-os.chdir("output")
-for file in glob.glob("*.csv"):
-    if file != "ADBE.csv":
-        cmd =("""bq load --autodetect --noreplace --source_format=CSV trading.trading_data """ + file)
-        subprocess.call(cmd,shell=True)
+
+def loadintobq():
+    os.chdir("output")
+    for file in glob.glob("*.csv"):
+        if file != "ADBE.csv":
+            cmd =("""bq load --autodetect --noreplace --source_format=CSV trading.trading_data """ + file)
+            y = subprocess.call(cmd,shell=True)
+            print (file + "was loaded with the follwing" + y)
+
 
 
 

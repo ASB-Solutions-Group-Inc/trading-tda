@@ -13,6 +13,7 @@ from tda.auth import easy_client
 from tda.client import Client
 from setup import *
 from arima import * 
+from loadintobq import *
 
 
 data = numpy.array(['ticker','open','high','low','close','volume','date'])
@@ -85,6 +86,12 @@ data = numpy.array(['ticker','open','high','low','close','volume','date'])
 dk = pandas.DataFrame( columns=data)
 for row in range(len(portfolio)):
     getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,DEBUG)
+
+print ("Loading into BQ")
+# Loading first one will rebuilt the table
+query_example()
+# loading the remaining into BQ
+loadintobq()
 
         
     
