@@ -15,11 +15,6 @@ from setup import *
 from arima import * 
 from loadintobq import *
 
-
-data = numpy.array(['ticker','open','high','low','close','volume','date'])
-#index = numpy.array(['ticker','date'])               
-dk = pandas.DataFrame( columns=data)
-
 def importPortfolio():
     df = pandas.read_csv ('my-5-start-export.csv')
     return df
@@ -47,8 +42,7 @@ c = tda.auth.easy_client(
     TOKEN_PATH,
     make_webdriver)
 
-def getHistoricalData(dk, portfolio_ticker,reload,debug):
-    print(portfolio_ticker)
+def getHistoricalData(dk, portfolio_ticker,reload,debug,RUN_AMIRA,count):
     if (reload == 'y'):
         resp = c.get_price_history(portfolio_ticker,
             period_type=Client.PriceHistory.PeriodType.YEAR,
@@ -67,31 +61,33 @@ def getHistoricalData(dk, portfolio_ticker,reload,debug):
                             'volume': i['volume'],
                             'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
         dk = calculate_rsi(dk,portfolio_ticker,debug)
-        # dk['date'] = pandas.to_datetime(dk['date'])
-        # dk.sort_values('date', inplace=True)
-        # dk.set_index('date', inplace=True)
         dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
     dt_portfolio = converttodf(portfolio_ticker)
-    dt_portfolio = calculate_rsi(dt_portfolio,portfolio_ticker,debug)
-    #calculate_arima(dt_portfolio,debug,portfolio=portfolio_ticker)
-    return dk
+    if(RUN_AMIRA == 'y'):
+        x = calculate_arima(dt_portfolio,debug,portfolio=portfolio_ticker)
+        print(x)
+    if (RELOAD == 'y'):
+        if (count == 0 ):
+            print ("Loading into BQ first portfolio so recreating the structure")
+            # Loading first one will rebuilt the table
+            insertfirstportfolio(portfolio_ticker)
+        else:
+            # loading the remaining into BQ
+            loadintobqport(portfolio_ticker)
+    return dt_portfolio
 
 #account_positions = tda.client.Client.Account.get_account()
 
 account = getAccount(c, ACCOUNT_ID)
-print(account)
-
 portfolio = importPortfolio()
 data = numpy.array(['ticker','open','high','low','close','volume','date'])      
 dk = pandas.DataFrame( columns=data)
+count = 0
 for row in range(len(portfolio)):
-    getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,DEBUG)
+    getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,DEBUG,RUN_AMIRA,count)
+    count = count + 1 
 
-print ("Loading into BQ")
-# Loading first one will rebuilt the table
-query_example()
-# loading the remaining into BQ
-loadintobq()
+
 
         
     

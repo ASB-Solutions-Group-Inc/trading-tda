@@ -10,6 +10,16 @@ def query_example():
     cmd =("""bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
     subprocess.call(cmd,shell=True)
 
+def loadintobqport(portfolio):
+    cmd =("""bq load --autodetect --noreplace --source_format=CSV trading.trading_data output/""" + portfolio + '.csv')
+    y = subprocess.call(cmd,shell=True)
+    print (str(portfolio) + " was loaded with the follwing " + str(y))
+
+def insertfirstportfolio(portfolio_ticker):
+    cmd =("""bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" + portfolio_ticker + ".csv")
+    subprocess.call(cmd,shell=True)
+    print ("First portfolio loaded")  
+
 
 import glob, os
 
@@ -19,8 +29,10 @@ def loadintobq():
         if file != "ADBE.csv":
             cmd =("""bq load --autodetect --noreplace --source_format=CSV trading.trading_data """ + file)
             y = subprocess.call(cmd,shell=True)
-            print (file + "was loaded with the follwing" + y)
+            print (str(file) + "was loaded with the follwing" + str(y))
 
+#query_example()
+#loadintobq()
 
 
 

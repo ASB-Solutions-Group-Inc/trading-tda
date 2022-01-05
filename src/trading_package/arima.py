@@ -42,8 +42,7 @@ def calculate_arima (df, debug,portfolio) :
     #     rs = calculate_rsi(df,portfolio,debug)
     #     print(rs.tail())
     #     return rs
-    if len(df) == 0 :
-        return
+
     if debug == 'y':
         print(df.shape)
         print(df.head())
@@ -102,12 +101,9 @@ def calculate_arima (df, debug,portfolio) :
     from statsmodels.tsa.arima.model import ARIMA
 
     # Notice that you have to use udiff - the differenced data rather than the original data.
-    ar1 = ARIMA(udiff.values, order = (3,0,1)).fit()
+    ar1 = ARIMA(udiff.values, order = (3, 0,1)).fit()
     if debug == 'y':
         print(ar1.summary())
-    file1 = open('output/plot/' + portfolio + '_sarimax.txt',"w" )
-    file1.writelines(str(ar1.summary()))
-    file1.close()
 
 
     steps = 5
