@@ -1,0 +1,9 @@
+tda-api
+selenium
+webdriver-manager
+statsmodels
+pandas
+numpy
+matplotlib 
+pandas_ta
+virtualenv
