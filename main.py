@@ -20,13 +20,14 @@ from load_bq import insert_first_portfolio,load_bq_portfolio
 
 
 def import_portfolio(logging):
+    """This function will be used to import the portfolio """
     data_csv = pandas.read_csv('my-5-start-export.csv')
     logging.info("Portfolio CSV file loaded")
     return data_csv
 
 
 def make_webdriver():
-    # Import selenium here because it's slow to import
+    """Import selenium here because it's slow to import"""
     driver = webdriver.Chrome(ChromeDriverManager().install())
     # driver = webdriver.Chrome("/home/USER_NAME/FOLDER/chromedriver")
     # driver = webdriver.Chrome()
@@ -35,6 +36,7 @@ def make_webdriver():
 
 
 def get_account(client, account_id, logging):
+    """This function will be used to get the accounts """
     account_information = client.get_account(
         account_id, fields=Client.Account.Fields.POSITIONS)
     if account_information.status_code != httpx.codes.OK:
@@ -51,6 +53,7 @@ _client = tda.auth.easy_client(
 
 
 def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
+    """This function will be used to get historical data of the portfolio ticker """
     logging.info('portfolio started loading' + portfolio_ticker)
     if reload == 'y':
         resp = _client.get_price_history(
@@ -75,11 +78,13 @@ def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
 
 #account_positions = tda.client.Client.Account.get_account()
 def real_time_quote(client,portfolio):
+    """This function will be used to get the real time quotes """
     _response = client.get_quote(portfolio)
     print(_response.json())
     return _response
 
 def main():
+    """This is the main function """
     if DEBUG == 'y':
         logging.basicConfig(
             filename='app.log',

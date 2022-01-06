@@ -10,12 +10,14 @@ import subprocess
 
 
 def query_example():
+    """This function will be used as a sample insert of ADBE portfolio"""
     cmd = (
         """bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
     subprocess.call(cmd, shell=True)
 
 
 def load_bq_portfolio(portfolio, log_message):
+    """This function will be used to load data into BQ for a given portfolio"""
     cmd = (
         """bq load --autodetect --noreplace --source_format=CSV trading.trading_data output/""" +
         portfolio +
@@ -28,6 +30,7 @@ def load_bq_portfolio(portfolio, log_message):
 
 
 def insert_first_portfolio(portfolio_ticker, log_message):
+    """This function will be used to load the first portfolio into BQ """
     cmd = (
         """bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" +
         portfolio_ticker +
@@ -37,6 +40,7 @@ def insert_first_portfolio(portfolio_ticker, log_message):
 
 
 def load_bq():
+    """This function will be used to load all the files in the folder into BQ """
     logging.basicConfig(
         filename='bqload.log',
         filemode='w',

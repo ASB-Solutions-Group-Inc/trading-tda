@@ -1,8 +1,8 @@
+import sys
 import atexit
 import datetime
 import dateutil
 import httpx
-import sys
 import tda
 
 API_KEY = 'XXXXXX@AMER.OAUTHAP'
