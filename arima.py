@@ -23,15 +23,15 @@ def converttodf (portfolio):
     df.set_index('date', inplace=True)
     return df
 
-def calculate_rsi(ticker,portfolio,debug):
+def calculate_rsi(ticker,logging):
     ticker['rsi'] = pta.rsi(ticker['close'],timeperiod=13)
     ticker['Signal'] = 'KEEP'
     ticker.loc[ticker['rsi'] > 70, 'Signal'] = 'SELL'
     ticker.loc[ticker['rsi'] < 30, 'Signal'] = 'BUY'
-    print(ticker.tail())
+    logging.info(ticker.tail())
     return ticker
 
-def calculate_arima (df, debug,portfolio) :
+def calculate_arima (df,portfolio,logging) :
     # df = pd.read_csv('output/' + portfolio + '.csv')
 
     # df['date'] = pd.to_datetime(df['date'])
@@ -40,22 +40,21 @@ def calculate_arima (df, debug,portfolio) :
 
     # if calculate_rsi_only == 'y':
     #     rs = calculate_rsi(df,portfolio,debug)
-    #     print(rs.tail())
+    #     logging.info(rs.tail())
     #     return rs
     if len(df) == 0 :
         return
-    if debug == 'y':
-        print(df.shape)
-        print(df.head())
+    
+    logging.info(df.shape)
+    logging.info(df.head())
 
     df_week = df.resample('w').mean()
     df_week = df_week[['close']]
-    if debug == 'y':
-        print(df_week.head())
+    
+    logging.info(df_week.head())
 
     df_week['weekly_ret'] = np.log(df_week['close']).diff()
-    if debug == 'y':
-        print(df_week.head())
+    logging.info(df_week.head())
     # drop null rows
     df_week.dropna(inplace=True)
     plt.figure(figsize=(12, 6))
@@ -65,22 +64,22 @@ def calculate_arima (df, debug,portfolio) :
     #df_week.weekly_ret.plot(kind='line', figsize=(12, 6))
     udiff = df_week.drop(['close'], axis=1)
 
-    if debug == 'y':
-        print(udiff.tail())
+    
+    logging.info(udiff.tail())
 
     rolmean = udiff.rolling(20).mean()
     rolstd = udiff.rolling(20).std()
-    if debug == 'y':
-        print(rolmean.tail())
-        print(rolstd.tail())
-        plt.figure(figsize=(12, 6))
-        orig = plt.plot(udiff, color='blue', label='Original')
-        mean = plt.plot(rolmean, color='red', label='Rolling Mean')
-        std = plt.plot(rolstd, color='black', label = 'Rolling Std Deviation')
-        plt.title('Rolling Mean & Standard Deviation')
-        plt.legend(loc='best')
-        plt.show(block=False)
-        plt.savefig('output/plot/' + portfolio + '.png')
+    
+    logging.info(rolmean.tail())
+    logging.info(rolstd.tail())
+    plt.figure(figsize=(12, 6))
+    orig = plt.plot(udiff, color='blue', label='Original')
+    mean = plt.plot(rolmean, color='red', label='Rolling Mean')
+    std = plt.plot(rolstd, color='black', label = 'Rolling Std Deviation')
+    plt.title('Rolling Mean & Standard Deviation')
+    plt.legend(loc='best')
+    plt.show(block=False)
+    plt.savefig('output/plot/' + portfolio + '.png')
 
 
     dftest = sm.tsa.adfuller(udiff.weekly_ret, autolag='AIC')
@@ -88,7 +87,7 @@ def calculate_arima (df, debug,portfolio) :
     for key, value in dftest[4].items():
         dfoutput['Critical Value ({0})'.format(key)] = value
         
-    print(dfoutput)
+    logging.info(dfoutput)
 
     fig, ax = plt.subplots(figsize=(12,5))
     plot_acf(udiff.values, lags=20, ax=ax)
@@ -103,8 +102,7 @@ def calculate_arima (df, debug,portfolio) :
 
     # Notice that you have to use udiff - the differenced data rather than the original data.
     ar1 = ARIMA(udiff.values, order = (3,0,1)).fit()
-    if debug == 'y':
-        print(ar1.summary())
+    logging.info(ar1.summary())
     file1 = open('output/plot/' + portfolio + '_sarimax.txt',"w" )
     file1.writelines(str(ar1.summary()))
     file1.close()
@@ -118,9 +116,9 @@ def calculate_arima (df, debug,portfolio) :
     plt.plot(udiff.values, color='blue')
 
     preds = ar1.fittedvalues
-    if debug == 'y':
-        print(preds)
-        print(forecast)
+    
+    logging.info(preds)
+    logging.info(forecast)
     plt.plot(preds, color='red')
 
     plt.plot(pd.DataFrame(np.array([preds[-1],forecast[0]]).T,index=range(len(udiff.values)+1, len(udiff.values)+3)), color='green')

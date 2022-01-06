@@ -6,8 +6,9 @@ import httpx
 import sys
 import tda
 import pandas
+from string import Template
 import numpy
-import json
+import logging
 # TD Ameritrade imports 
 from tda.auth import easy_client
 from tda.client import Client
@@ -43,6 +44,11 @@ c = tda.auth.easy_client(
     make_webdriver)
 
 def getHistoricalData(dk, portfolio_ticker,reload,debug,RUN_AMIRA,count):
+    if (debug == 'y'):
+        logging.basicConfig(filename='app.log', filemode='w',level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
+    else :
+        logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+    logging.info('portfolio started loading' + portfolio_ticker)
     if (reload == 'y'):
         resp = c.get_price_history(portfolio_ticker,
             period_type=Client.PriceHistory.PeriodType.YEAR,
@@ -60,20 +66,22 @@ def getHistoricalData(dk, portfolio_ticker,reload,debug,RUN_AMIRA,count):
                             'low': i['low'],
                             'volume': i['volume'],
                             'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
-        dk = calculate_rsi(dk,portfolio_ticker,debug)
+        dk = calculate_rsi(dk,logging)
         dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
     dt_portfolio = converttodf(portfolio_ticker)
     if(RUN_AMIRA == 'y'):
-        x = calculate_arima(dt_portfolio,debug,portfolio=portfolio_ticker)
-        print(x)
+        try : 
+            x = calculate_arima(dt_portfolio,portfolio_ticker,logging)
+        except Exception as error:
+            logging.error(error)
     if (RELOAD == 'y'):
         if (count == 0 ):
-            print ("Loading into BQ first portfolio so recreating the structure")
+            logging.info ("Loading into BQ first portfolio so recreating the structure")
             # Loading first one will rebuilt the table
-            insertfirstportfolio(portfolio_ticker)
+            insertfirstportfolio(portfolio_ticker,logging)
         else:
             # loading the remaining into BQ
-            loadintobqport(portfolio_ticker)
+            loadintobqport(portfolio_ticker,logging)
     return dt_portfolio
 
 #account_positions = tda.client.Client.Account.get_account()
