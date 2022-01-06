@@ -40,7 +40,7 @@ def load_bq():
     logging.basicConfig(
         filename='bqload.log'
         filemode='w',
-        format='%(name)s - %(levelname)s - %(message)s')
+        format='%(name)s - %(levelname)s - %(message)s'))
     os.chdir("output")
     for file in glob.glob("*.csv"):
         if file != "ADBE.csv":
