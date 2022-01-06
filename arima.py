@@ -63,7 +63,6 @@ def calculate_arima(df, portfolio, logging):
     plt.title('weekly returns')
     plt.plot(df.close, label='weekly return')
     plt.savefig('output/plot/' + portfolio + '_return.png')
-    #df_week.weekly_ret.plot(kind='line', figsize=(12, 6))
     udiff = df_week.drop(['close'], axis=1)
 
     logging.info(udiff.tail())

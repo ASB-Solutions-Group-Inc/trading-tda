@@ -1,33 +1,32 @@
 # pylint: disable=redefined-outer-name
-import sys
-import atexit
+# import sys
+# import atexit
 import datetime
 import logging
-import dateutil
-from pandas.core.frame import DataFrame
+# import dateutil
+# from pandas.core.frame import DataFrame
 import httpx
 import tda
 import pandas
 import numpy
 # TD Ameritrade imports
-from tda.auth import easy_client
+#from tda.auth import easy_client
 from tda.client import Client
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from setup import *
-from arima import *
-from loadintobq import *
+from arima import calculate_rsi,converttodf,calculate_arima
+from load_bq import insert_first_portfolio,load_bq_portfolio
 
 
-def importPortfolio(logging):
-    df = pandas.read_csv('my-5-start-export.csv')
+def import_portfolio(logging):
+    data_csv = pandas.read_csv('my-5-start-export.csv')
     logging.info("Portfolio CSV file loaded")
-    return df
+    return data_csv
 
 
 def make_webdriver():
     # Import selenium here because it's slow to import
-    from selenium import webdriver
-    from webdriver_manager.chrome import ChromeDriverManager
-
     driver = webdriver.Chrome(ChromeDriverManager().install())
     # driver = webdriver.Chrome("/home/USER_NAME/FOLDER/chromedriver")
     # driver = webdriver.Chrome()
@@ -35,26 +34,26 @@ def make_webdriver():
     return driver
 
 
-def getAccount(c, ACCOUNT_ID, logging):
-    account_information = c.get_account(
-        ACCOUNT_ID, fields=Client.Account.Fields.POSITIONS)
+def get_account(client, account_id, logging):
+    account_information = client.get_account(
+        account_id, fields=Client.Account.Fields.POSITIONS)
     if account_information.status_code != httpx.codes.OK:
         logging.error(str(account_information.status_code))
     account = pandas.DataFrame.from_dict(account_information.json())
     return account
 
 
-c = tda.auth.easy_client(
+_client = tda.auth.easy_client(
     API_KEY,
     REDIRECT_URI,
     TOKEN_PATH,
     make_webdriver)
 
 
-def getHistoricalData(dk, portfolio_ticker, reload, logging):
+def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
     logging.info('portfolio started loading' + portfolio_ticker)
     if reload == 'y':
-        resp = c.get_price_history(
+        resp = _client.get_price_history(
             portfolio_ticker,
             period_type=Client.PriceHistory.PeriodType.YEAR,
             period=Client.PriceHistory.Period.TWENTY_YEARS,
@@ -62,9 +61,8 @@ def getHistoricalData(dk, portfolio_ticker, reload, logging):
             frequency=Client.PriceHistory.Frequency.DAILY)
         assert resp.status_code == httpx.codes.OK
         data_hist = pandas.DataFrame.from_dict(resp.json())
-        # print(data_hist['candles'][0])
         for i in data_hist['candles']:
-            dk = dk.append({'ticker': portfolio_ticker,
+            data_portfolio = data_portfolio.append({'ticker': portfolio_ticker,
                             'open': i['open'],
                             'high': i['high'],
                             'close': i['close'],
@@ -72,13 +70,14 @@ def getHistoricalData(dk, portfolio_ticker, reload, logging):
                             'volume': i['volume'],
                             'date': datetime.datetime.fromtimestamp(i['datetime'] / 1000)},
                            ignore_index=True)
-        dk = calculate_rsi(dk, logging)
-        dk.to_csv("output/" + portfolio_ticker + ".csv", index=False)
-
-    return
+        data_portfolio = calculate_rsi(data_portfolio, logging)
+        data_portfolio.to_csv("output/" + portfolio_ticker + ".csv", index=False)
 
 #account_positions = tda.client.Client.Account.get_account()
-
+def real_time_quote(client,portfolio):
+    _response = client.get_quote(portfolio)
+    print(_response.json())
+    return _response
 
 def main():
     if DEBUG == 'y':
@@ -92,15 +91,15 @@ def main():
             filename='app.log',
             filemode='w',
             format='%(name)s - %(levelname)s - %(message)s')
-    # account = getAccount(c, ACCOUNT_ID,logging)
-    portfolio = importPortfolio(logging)
+    # account = get_account(c, ACCOUNT_ID,logging)
+    portfolio = import_portfolio(logging)
     data = numpy.array(
         ['ticker', 'open', 'high', 'low', 'close', 'volume', 'date'])
     _dk = pandas.DataFrame(columns=data)
     count = 0
     for row in range(len(portfolio)):
         portfolio_ticker = portfolio.loc[row, "Symbol"]
-        getHistoricalData(_dk, portfolio_ticker, RELOAD, logging)
+        get_historical_data(_dk, portfolio_ticker, RELOAD, logging)
         if RUN_AMIRA == 'y':
             try:
                 dt_portfolio = converttodf(portfolio_ticker)
@@ -112,10 +111,10 @@ def main():
                 logging.info(
                     "Loading into BQ first portfolio so recreating the structure")
                 # Loading first one will rebuilt the table
-                insertfirstportfolio(portfolio_ticker, logging)
+                insert_first_portfolio(portfolio_ticker, logging)
             else:
                 # loading the remaining into BQ
-                loadintobqport(portfolio_ticker, logging)
+                load_bq_portfolio(portfolio_ticker, logging)
         count = count + 1
 
 

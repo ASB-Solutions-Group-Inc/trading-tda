@@ -1,33 +1,33 @@
 import os
 import glob
-import pandas as pd
-from string import Template
-import numpy
+# import pandas as pd
+# from string import Template
+# import numpy
 import logging
-from setup import *
-
+# from setup import *
 # Import to BQ
 import subprocess
 
 
 def query_example():
-    cmd = ("""bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
+    cmd = (
+        """bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
     subprocess.call(cmd, shell=True)
 
 
-def loadintobqport(portfolio, log_message):
+def load_bq_portfolio(portfolio, log_message):
     cmd = (
         """bq load --autodetect --noreplace --source_format=CSV trading.trading_data output/""" +
         portfolio +
         '.csv')
-    y = subprocess.call(cmd, shell=True)
+    _output = subprocess.call(cmd, shell=True)
     log_message.info(
         str(portfolio) +
         " was loaded with the follwing " +
-        str(y))
+        str(_output))
 
 
-def insertfirstportfolio(portfolio_ticker, log_message):
+def insert_first_portfolio(portfolio_ticker, log_message):
     cmd = (
         """bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" +
         portfolio_ticker +
@@ -36,22 +36,25 @@ def insertfirstportfolio(portfolio_ticker, log_message):
     log_message.info("First portfolio loaded")
 
 
-def loadintobq():
-    log_message = "starting message"
+def load_bq():
+    logging.basicConfig(
+        filename='bqload.log'
+        filemode='w',
+        format='%(name)s - %(levelname)s - %(message)s')
     os.chdir("output")
     for file in glob.glob("*.csv"):
         if file != "ADBE.csv":
             cmd = (
                 """bq load --autodetect --noreplace --source_format=CSV trading.trading_data """ +
                 file)
-            y = subprocess.call(cmd, shell=True)
-            log_message.info(
+            output = subprocess.call(cmd, shell=True)
+            logging.info(
                 str(file) +
                 "was loaded with the follwing" +
-                str(y))
+                str(output))
 
 # query_example()
-# loadintobq()
+# load_bq()
 
 
 # import pandas_ta as pta
