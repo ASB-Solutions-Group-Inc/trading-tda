@@ -16,8 +16,9 @@ from setup import *
 from arima import * 
 from loadintobq import *
 
-def importPortfolio():
+def importPortfolio(logging):
     df = pandas.read_csv ('my-5-start-export.csv')
+    logging.info("Portfolio CSV file loaded")
     return df
 
 def make_webdriver():
@@ -31,9 +32,10 @@ def make_webdriver():
     # atexit.register(lambda: driver.quit())
     return driver
 
-def getAccount(c, ACCOUNT_ID):
+def getAccount(c, ACCOUNT_ID,logging):
     account_information = c.get_account(ACCOUNT_ID,fields=Client.Account.Fields.POSITIONS)
-    assert account_information.status_code == httpx.codes.OK
+    if ( account_information.status_code != httpx.codes.OK) :
+        logging.error(str(account_information.status_code))
     account = pandas.DataFrame.from_dict(account_information.json())
     return account
 
@@ -43,11 +45,7 @@ c = tda.auth.easy_client(
     TOKEN_PATH,
     make_webdriver)
 
-def getHistoricalData(dk, portfolio_ticker,reload,debug,RUN_AMIRA,count):
-    if (debug == 'y'):
-        logging.basicConfig(filename='app.log', filemode='w',level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
-    else :
-        logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+def getHistoricalData(dk, portfolio_ticker,reload,logging,RUN_AMIRA,count):
     logging.info('portfolio started loading' + portfolio_ticker)
     if (reload == 'y'):
         resp = c.get_price_history(portfolio_ticker,
@@ -86,13 +84,18 @@ def getHistoricalData(dk, portfolio_ticker,reload,debug,RUN_AMIRA,count):
 
 #account_positions = tda.client.Client.Account.get_account()
 
-account = getAccount(c, ACCOUNT_ID)
-portfolio = importPortfolio()
+
+if (DEBUG == 'y'):
+    logging.basicConfig(filename='app.log', filemode='w',level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
+else :
+    logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+account = getAccount(c, ACCOUNT_ID,logging)
+portfolio = importPortfolio(logging)
 data = numpy.array(['ticker','open','high','low','close','volume','date'])      
 dk = pandas.DataFrame( columns=data)
 count = 0
 for row in range(len(portfolio)):
-    getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,DEBUG,RUN_AMIRA,count)
+    getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,logging,RUN_AMIRA,count)
     count = count + 1 
 
 
