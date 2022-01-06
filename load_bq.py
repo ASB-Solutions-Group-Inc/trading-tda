@@ -38,7 +38,7 @@ def insert_first_portfolio(portfolio_ticker, log_message):
 
 def load_bq():
     logging.basicConfig(
-        filename='bqload.log'
+        filename='bqload.log',
         filemode='w',
         format='%(name)s - %(levelname)s - %(message)s'))
     os.chdir("output")
