@@ -45,7 +45,7 @@ c = tda.auth.easy_client(
     TOKEN_PATH,
     make_webdriver)
 
-def getHistoricalData(dk, portfolio_ticker,reload,logging,RUN_AMIRA,count):
+def getHistoricalData(dk, portfolio_ticker,reload,logging):
     logging.info('portfolio started loading' + portfolio_ticker)
     if (reload == 'y'):
         resp = c.get_price_history(portfolio_ticker,
@@ -66,39 +66,42 @@ def getHistoricalData(dk, portfolio_ticker,reload,logging,RUN_AMIRA,count):
                             'date': datetime.datetime.fromtimestamp(i['datetime']/1000) },ignore_index=True)
         dk = calculate_rsi(dk,logging)
         dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
-    dt_portfolio = converttodf(portfolio_ticker)
-    if(RUN_AMIRA == 'y'):
-        try : 
-            x = calculate_arima(dt_portfolio,portfolio_ticker,logging)
-        except Exception as error:
-            logging.error(error)
-    if (RELOAD == 'y'):
-        if (count == 0 ):
-            logging.info ("Loading into BQ first portfolio so recreating the structure")
-            # Loading first one will rebuilt the table
-            insertfirstportfolio(portfolio_ticker,logging)
-        else:
-            # loading the remaining into BQ
-            loadintobqport(portfolio_ticker,logging)
+
     return dt_portfolio
 
 #account_positions = tda.client.Client.Account.get_account()
 
+def main():
+    if (DEBUG == 'y'):
+        logging.basicConfig(filename='app.log', filemode='w',level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
+    else :
+        logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+    account = getAccount(c, ACCOUNT_ID,logging)
+    portfolio = importPortfolio(logging)
+    data = numpy.array(['ticker','open','high','low','close','volume','date'])      
+    dk = pandas.DataFrame( columns=data)
+    count = 0
+    for row in range(len(portfolio)):
+        portfolio_ticker = portfolio.loc[row,"Symbol"]
+        getHistoricalData(dk, portfolio_ticker,RELOAD,logging)
+        if(RUN_AMIRA == 'y'):
+            try : 
+                dt_portfolio = converttodf(portfolio_ticker)
+                calculate_arima(dt_portfolio,portfolio_ticker,logging)
+            except Exception as error:
+                logging.error(error)
+        if (RELOAD == 'y'):
+            if (count == 0 ):
+                logging.info ("Loading into BQ first portfolio so recreating the structure")
+                # Loading first one will rebuilt the table
+                insertfirstportfolio(portfolio_ticker,logging)
+            else:
+                # loading the remaining into BQ
+                loadintobqport(portfolio_ticker,logging)
+        count = count + 1 
 
-if (DEBUG == 'y'):
-    logging.basicConfig(filename='app.log', filemode='w',level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
-else :
-    logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
-account = getAccount(c, ACCOUNT_ID,logging)
-portfolio = importPortfolio(logging)
-data = numpy.array(['ticker','open','high','low','close','volume','date'])      
-dk = pandas.DataFrame( columns=data)
-count = 0
-for row in range(len(portfolio)):
-    getHistoricalData(dk, portfolio.loc[row,"Symbol"],RELOAD,logging,RUN_AMIRA,count)
-    count = count + 1 
-
-
+if __name__ == '__main__':
+    main()
 
         
     
