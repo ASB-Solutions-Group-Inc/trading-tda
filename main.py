@@ -1,3 +1,4 @@
+# pylint: disable=redefined-outer-name
 import atexit
 import datetime
 import dateutil
@@ -32,9 +33,9 @@ def make_webdriver():
     # atexit.register(lambda: driver.quit())
     return driver
 
-def getAccount(c, ACCOUNT_ID,logging):
+def getAccount(c,ACCOUNT_ID,logging):
     account_information = c.get_account(ACCOUNT_ID,fields=Client.Account.Fields.POSITIONS)
-    if ( account_information.status_code != httpx.codes.OK) :
+    if account_information.status_code != httpx.codes.OK:
         logging.error(str(account_information.status_code))
     account = pandas.DataFrame.from_dict(account_information.json())
     return account
@@ -67,7 +68,7 @@ def getHistoricalData(dk, portfolio_ticker,reload,logging):
         dk = calculate_rsi(dk,logging)
         dk.to_csv("output/" + portfolio_ticker + ".csv",index=False)
 
-    return dt_portfolio
+    return
 
 #account_positions = tda.client.Client.Account.get_account()
 
@@ -76,16 +77,16 @@ def main():
         logging.basicConfig(filename='app.log', filemode='w',level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
     else :
         logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
-    account = getAccount(c, ACCOUNT_ID,logging)
+    # account = getAccount(c, ACCOUNT_ID,logging)
     portfolio = importPortfolio(logging)
     data = numpy.array(['ticker','open','high','low','close','volume','date'])      
-    dk = pandas.DataFrame( columns=data)
+    _dk = pandas.DataFrame( columns=data)
     count = 0
     for row in range(len(portfolio)):
         portfolio_ticker = portfolio.loc[row,"Symbol"]
-        getHistoricalData(dk, portfolio_ticker,RELOAD,logging)
+        getHistoricalData(_dk, portfolio_ticker,RELOAD,logging)
         if(RUN_AMIRA == 'y'):
-            try : 
+            try: 
                 dt_portfolio = converttodf(portfolio_ticker)
                 calculate_arima(dt_portfolio,portfolio_ticker,logging)
             except Exception as error:
