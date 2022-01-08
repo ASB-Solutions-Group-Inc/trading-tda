@@ -1,0 +1,101 @@
+Company Name,Symbol
+Apple,AAPL
+Google,GOOG
+tesla,TSLA
+confluent,CFLT
+vanguard total market,VTI
+Activision Blizz,ATVI
+Adobe Inc.,ADBE
+Alaska Air Group,ALK
+AmerisourceBerge,ABC
+"ANSYS, Inc.",ANSS
+Applied Material,AMAT
+ASML Holding N.V,ASML
+Atlassian Corpor,TEAM
+"Autodesk, Inc.",ADSK
+"AutoNation, Inc.",AN
+Ball Corporation,BLL
+"BlackRock, Inc.",BLK
+Broadcom Inc.,AVGO
+Cadence Design S,CDNS
+Carpenter Techno,CRS
+Cleveland-Cliffs,CLF
+Commvault System,CVLT
+"Crocs, Inc.",CROX
+"Delta Air Lines,",DAL
+Devon Energy Cor,DVN
+DuPont de Nemour,DD
+Fair Isaac Corpo,FICO
+FedEx Corporatio,FDX
+Fidelity Nationa,FIS
+"Five Below, Inc.",FIVE
+Freeport-McMoRan,FCX
+General Dynamics,GD
+HSBC Holdings pl,HSBC
+Jacobs Engineeri,J
+Knight-Swift Tra,KNX
+Laboratory Corpo,LH
+Lennar Corporati,LEN
+Lockheed Martin,LMT
+Lumentum Holding,LITE
+Manhattan Associ,MANH
+"Merck & Co., Inc",MRK
+Meritage Homes C,MTH
+Microsoft Corpor,MSFT
+"MKS Instruments,",MKSI
+MP Materials Cor,MP
+"New Relic, Inc.",NEWR
+News Corporation,NWSA
+NICE Ltd.,NICE
+Northrop Grumman,NOC
+Olin Corporation,OLN
+Orange S.A.,ORAN
+Ovintiv Inc.,OVV
+Papa John's Inte,PZZA
+Pegasystems Inc.,PEGA
+"PepsiCo, Inc.",PEP
+Pfizer Inc.,PFE
+Pitney Bowes Inc,PBI
+PTC Inc.,PTC
+"Quanta Services,",PWR
+Raytheon Technol,RTX
+Robert Half Inte,RHI
+Roblox Corporati,RBLX
+"Ryder System, In",R
+"salesforce.com,",CRM
+Sea Limited,SE
+"ServiceNow, Inc.",NOW
+Southwest Airlin,LUV
+Spirit AeroSyste,SPR
+Stanley Black &,SWK
+Summit Materials,SUM
+"Synopsys, Inc.",SNPS
+"T-Mobile US, Inc",TMUS
+Targa Resources,TRGP
+Teck Resources L,TECK
+The Allstate Cor,ALL
+The Boeing Compa,BA
+The Chemours Com,CC
+The Goldman Sach,GS
+The TJX Companie,TJX
+Twilio Inc.,TWLO
+Uber Technologie,UBER
+United Parcel Se,UPS
+UnitedHealth Gro,UNH
+V.F. Corporation,VFC
+Roku,ROKU
+Intuit,INTU
+DocuSign,DOCU
+Airbnb,ABNB
+Upstart,UPST
+Trade desk,TTD
+Snowflake,SNOW
+Shopify,SHOP
+Unify,U
+Lululemon,LULU
+Digitalocean Holdings,DOCN
+Teledoc,TDOC
+Align tech,ALGN
+Twilio,TWLO
+Taskus,TASK
+Doximity,DOCS

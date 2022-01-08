@@ -15,7 +15,7 @@ from tda.client import Client
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from setup import *
-from arima import calculate_rsi,converttodf,calculate_arima
+from arima import calculate_rsi,convert_dataframe,calculate_arima
 from load_bq import insert_first_portfolio,load_bq_portfolio
 
 
@@ -83,6 +83,10 @@ def real_time_quote(client,portfolio):
     print(_response.json())
     return _response
 
+def read_spark_csv(filename):
+    spark_dataframe = pandas.read_csv(filename)
+    return spark_dataframe
+
 def main():
     """This is the main function """
     if DEBUG == 'y':
@@ -98,6 +102,8 @@ def main():
             format='%(name)s - %(levelname)s - %(message)s')
     # account = get_account(c, ACCOUNT_ID,logging)
     portfolio = import_portfolio(logging)
+    #spark_portfolio = read_spark_csv("SPARK.csv")
+    #load_spark_portfolio(spark_portfolio)
     data = numpy.array(
         ['ticker', 'open', 'high', 'low', 'close', 'volume', 'date'])
     _dk = pandas.DataFrame(columns=data)
@@ -107,7 +113,7 @@ def main():
         get_historical_data(_dk, portfolio_ticker, RELOAD, logging)
         if RUN_AMIRA == 'y':
             try:
-                dt_portfolio = converttodf(portfolio_ticker)
+                dt_portfolio = convert_dataframe(portfolio_ticker)
                 calculate_arima(dt_portfolio, portfolio_ticker, logging)
             except Exception as error:
                 logging.error(error)

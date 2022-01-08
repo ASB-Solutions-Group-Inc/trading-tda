@@ -8,27 +8,27 @@ Activision Blizz,ATVI
 Adobe Inc.,ADBE
 Alaska Air Group,ALK
 AmerisourceBerge,ABC
-"ANSYS, Inc.",ANSS
+ANSYS,ANSS
 Applied Material,AMAT
 ASML Holding N.V,ASML
 Atlassian Corpor,TEAM
-"Autodesk, Inc.",ADSK
-"AutoNation, Inc.",AN
+Autodesk,ADSK
+AutoNation,AN
 Ball Corporation,BLL
-"BlackRock, Inc.",BLK
+BlackRock,BLK
 Broadcom Inc.,AVGO
 Cadence Design S,CDNS
 Carpenter Techno,CRS
 Cleveland-Cliffs,CLF
 Commvault System,CVLT
-"Crocs, Inc.",CROX
-"Delta Air Lines,",DAL
+Crocs,CROX
+Delta Air Lines,DAL
 Devon Energy Cor,DVN
 DuPont de Nemour,DD
 Fair Isaac Corpo,FICO
 FedEx Corporatio,FDX
 Fidelity Nationa,FIS
-"Five Below, Inc.",FIVE
+Five Below,FIVE
 Freeport-McMoRan,FCX
 General Dynamics,GD
 HSBC Holdings pl,HSBC
@@ -39,12 +39,12 @@ Lennar Corporati,LEN
 Lockheed Martin,LMT
 Lumentum Holding,LITE
 Manhattan Associ,MANH
-"Merck & Co., Inc",MRK
+Merck & Co.,MRK
 Meritage Homes C,MTH
 Microsoft Corpor,MSFT
-"MKS Instruments,",MKSI
+MKS Instruments,MKSI
 MP Materials Cor,MP
-"New Relic, Inc.",NEWR
+New Relic,NEWR
 News Corporation,NWSA
 NICE Ltd.,NICE
 Northrop Grumman,NOC
@@ -53,24 +53,24 @@ Orange S.A.,ORAN
 Ovintiv Inc.,OVV
 Papa John's Inte,PZZA
 Pegasystems Inc.,PEGA
-"PepsiCo, Inc.",PEP
+PepsiCo,PEP
 Pfizer Inc.,PFE
 Pitney Bowes Inc,PBI
 PTC Inc.,PTC
-"Quanta Services,",PWR
+Quanta Services,PWR
 Raytheon Technol,RTX
 Robert Half Inte,RHI
 Roblox Corporati,RBLX
-"Ryder System, In",R
-"salesforce.com,",CRM
+Ryder System,R
+salesforce.com,CRM
 Sea Limited,SE
-"ServiceNow, Inc.",NOW
+ServiceNow,NOW
 Southwest Airlin,LUV
 Spirit AeroSyste,SPR
 Stanley Black &,SWK
 Summit Materials,SUM
-"Synopsys, Inc.",SNPS
-"T-Mobile US, Inc",TMUS
+Synopsys,SNPS
+T-Mobile US,TMUS
 Targa Resources,TRGP
 Teck Resources L,TECK
 The Allstate Cor,ALL
@@ -98,4 +98,5 @@ Teledoc,TDOC
 Align tech,ALGN
 Twilio,TWLO
 Taskus,TASK
+Intutive Surgical,ISRG
 Doximity,DOCS

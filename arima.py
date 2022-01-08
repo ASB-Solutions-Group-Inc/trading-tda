@@ -18,7 +18,7 @@ matplotlib.use('TkAgg')
 # import sys
 # debug=sys.argv[1]
 # portfolio=sys.argv[2]
-def converttodf(portfolio):
+def convert_dataframe(portfolio):
     """This function will be used to convert the csv into the pandas dataframe"""
     data_portfolio = pd.read_csv('output/' + portfolio + '.csv')
     data_portfolio['date'] = pd.to_datetime(data_portfolio['date'])

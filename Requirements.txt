@@ -7,3 +7,5 @@ numpy
 matplotlib 
 pandas_ta
 virtualenv
+yfinance
+alphaVantage-api

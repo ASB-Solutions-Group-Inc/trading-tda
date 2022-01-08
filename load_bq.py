@@ -38,6 +38,13 @@ def insert_first_portfolio(portfolio_ticker, log_message):
     subprocess.call(cmd, shell=True)
     log_message.info("First portfolio loaded")
 
+def load_spark_portfolio():
+    """This function will load the spark dataframe to BQ"""
+    cmd = (
+        """bq load --autodetect --replace --source_format=CSV trading.spark_portfolio SPARK.csv"""
+    )
+    subprocess.call(cmd, shell=True)
+    logging.info("spark portfolio loaded")
 
 def load_bq():
     """This function will be used to load all the files in the folder into BQ """
