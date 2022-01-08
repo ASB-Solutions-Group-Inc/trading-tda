@@ -1,7 +1,16 @@
 # trading-tda
 Trading application for TDA
 
-## command history 
+## Set up file 
+Create a script setup.py in the repo with the following information 
+1. API_KEY = 'XXXX@AMER.OAUTHAP'
+2. REDIRECT_URI = 'https://127.0.0.1:8080'
+3. TOKEN_PATH = 'token-file-name.json'
+
+Note: Please keep the token-file-name.json safe and not make it public. 
+
+## Startup bash file content. 
+Start up file runs the following command to set up the environment. There is a need to set up the SETUPTOOLS_USE_DISTUTILS variable for the code to work smoothly. In addition, code assumes that gcloud and bq commands have been setup in the code
 
 1. pip install virtualenv
 2. virtualenv -v my-venv
