@@ -22,9 +22,9 @@ Trading application for TDA
 ## Finding ARIMA 
 9. pip install statsmodels
 10. python arima.py y ALL (Debug Mode) 
-    Parameters :
-        Debug (y or n)
-        Portfolio Name : (ALL)
+    * Parameters :
+        - Debug (y or n)
+        - Portfolio Name : (ALL)
 11.  pip install matplotlib pandas_ta
 12. python import-portfolio.py 
 ## Reference 
