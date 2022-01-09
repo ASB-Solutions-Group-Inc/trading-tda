@@ -12,8 +12,7 @@ import subprocess
 def query_example(portfolio):
     """This function will be used to load one portfolio file with table recreate"""
     cmd = (
-        """bq load --autodetect --replace --source_format=CSV trading.trading_data""" 
-        + "output/"
+        """bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" 
         + portfolio
         + ".csv")
     subprocess.call(cmd, shell=True)
