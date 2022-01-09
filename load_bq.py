@@ -16,27 +16,23 @@ def query_example():
     subprocess.call(cmd, shell=True)
 
 
-def load_bq_portfolio(portfolio, log_message):
+def load_bq_portfolio(portfolio, log_message,count):
     """This function will be used to load data into BQ for a given portfolio"""
-    cmd = (
-        """bq load --autodetect --noreplace --source_format=CSV trading.trading_data output/""" +
-        portfolio +
-        '.csv')
+    if count == 0:
+        cmd = (
+            """bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" +
+            portfolio +
+            ".csv")
+    else:
+        cmd = (
+            """bq load --autodetect --noreplace --source_format=CSV trading.trading_data output/""" +
+            portfolio +
+            '.csv')
     _output = subprocess.call(cmd, shell=True)
     log_message.info(
         str(portfolio) +
         " was loaded with the follwing " +
         str(_output))
-
-
-def insert_first_portfolio(portfolio_ticker, log_message):
-    """This function will be used to load the first portfolio into BQ """
-    cmd = (
-        """bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" +
-        portfolio_ticker +
-        ".csv")
-    subprocess.call(cmd, shell=True)
-    log_message.info("First portfolio loaded")
 
 def load_spark_portfolio():
     """This function will load the spark dataframe to BQ"""
@@ -64,6 +60,7 @@ def load_bq():
                 "was loaded with the follwing" +
                 str(output))
 
+# Reload the data from this script, the first portfolio that will be loaded is ADBE
 # query_example()
 # load_bq()
 

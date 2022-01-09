@@ -118,16 +118,7 @@ def main():
             except Exception as error:
                 logging.error(error)
         if RELOAD == 'y':
-            if count == 0:
-                logging.info(
-                    "Loading into BQ first portfolio so recreating the structure")
-                # Loading first one will rebuilt the table
-                insert_first_portfolio(portfolio_ticker, logging)
-            else:
-                # loading the remaining into BQ
-                load_bq_portfolio(portfolio_ticker, logging)
-        count = count + 1
-
-
+            load_bq_portfolio(portfolio_ticker, logging, count)
+            count = count + 1
 if __name__ == '__main__':
     main()
