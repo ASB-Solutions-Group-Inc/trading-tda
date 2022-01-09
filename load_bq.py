@@ -9,10 +9,13 @@ import logging
 import subprocess
 
 
-def query_example():
-    """This function will be used as a sample insert of ADBE portfolio"""
+def query_example(portfolio):
+    """This function will be used to load one portfolio file with table recreate"""
     cmd = (
-        """bq load --autodetect --replace --source_format=CSV trading.trading_data output/ADBE.csv""")
+        """bq load --autodetect --replace --source_format=CSV trading.trading_data""" 
+        + "output/"
+        + portfolio
+        + ".csv")
     subprocess.call(cmd, shell=True)
 
 
@@ -42,15 +45,15 @@ def load_spark_portfolio():
     subprocess.call(cmd, shell=True)
     logging.info("spark portfolio loaded")
 
-def load_bq():
-    """This function will be used to load all the files in the folder into BQ """
+def load_bq(exclude_file):
+    """This function will be used to load all the files in the folder into BQ except the filename that is passed """
     logging.basicConfig(
         filename='bqload.log',
         filemode='w',
         format='%(name)s - %(levelname)s - %(message)s')
     os.chdir("output")
     for file in glob.glob("*.csv"):
-        if file != "ADBE.csv":
+        if file != exclude_file :
             cmd = (
                 """bq load --autodetect --noreplace --source_format=CSV trading.trading_data """ +
                 file)
@@ -61,8 +64,8 @@ def load_bq():
                 str(output))
 
 # Reload the data from this script, the first portfolio that will be loaded is ADBE
-# query_example()
-# load_bq()
+# query_example("ADBE")
+# load_bq("ADBE.csv")
 
 
 # import pandas_ta as pta
