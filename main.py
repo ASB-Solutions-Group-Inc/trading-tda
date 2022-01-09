@@ -10,7 +10,7 @@ import numpy
 from tda.client import Client
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from setup import *
+from setup import config
 from arima import calculate_rsi,convert_dataframe,calculate_arima
 from load_bq import load_bq_portfolio
 
@@ -38,9 +38,9 @@ def get_account(client, account_id, logging):
     return account
 
 _client = tda.auth.easy_client(
-    API_KEY,
-    REDIRECT_URI,
-    TOKEN_PATH,
+    config.API_KEY,
+    config.REDIRECT_URI,
+    config.TOKEN_PATH,
     make_webdriver)
 
 def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
@@ -81,7 +81,10 @@ def read_spark_csv(filename):
 
 def main():
     """This is the main function """
-    if DEBUG == 'y':
+    _debug = config.DEBUG
+    _reload = config.RELOAD
+    _run_amira = config.RUN_AMIRA
+    if _debug == 'y':
         logging.basicConfig(
             filename='app.log',
             filemode='w',
@@ -102,14 +105,14 @@ def main():
     count = 0
     for row in range(len(portfolio)):
         portfolio_ticker = portfolio.loc[row, "Symbol"]
-        get_historical_data(_dk, portfolio_ticker, RELOAD, logging)
-        if RUN_AMIRA == 'y':
+        get_historical_data(_dk, portfolio_ticker, _reload, logging)
+        if _run_amira == 'y':
             try:
                 dt_portfolio = convert_dataframe(portfolio_ticker)
                 calculate_arima(dt_portfolio, portfolio_ticker, logging)
             except Exception as error:
                 logging.error(error)
-        if RELOAD == 'y':
+        if _reload == 'y':
             load_bq_portfolio(portfolio_ticker, logging, count)
             count = count + 1
 if __name__ == '__main__':
