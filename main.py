@@ -1,10 +1,6 @@
 # pylint: disable=redefined-outer-name
-# import sys
-# import atexit
 import datetime
 import logging
-# import dateutil
-# from pandas.core.frame import DataFrame
 import httpx
 import tda
 import pandas
@@ -16,15 +12,13 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from setup import *
 from arima import calculate_rsi,convert_dataframe,calculate_arima
-from load_bq import insert_first_portfolio,load_bq_portfolio
-
+from load_bq import load_bq_portfolio
 
 def import_portfolio(logging):
     """This function will be used to import the portfolio """
     data_csv = pandas.read_csv('my-5-start-export.csv')
     logging.info("Portfolio CSV file loaded")
     return data_csv
-
 
 def make_webdriver():
     """Import selenium here because it's slow to import"""
@@ -33,7 +27,6 @@ def make_webdriver():
     # driver = webdriver.Chrome()
     # atexit.register(lambda: driver.quit())
     return driver
-
 
 def get_account(client, account_id, logging):
     """This function will be used to get the accounts """
@@ -44,13 +37,11 @@ def get_account(client, account_id, logging):
     account = pandas.DataFrame.from_dict(account_information.json())
     return account
 
-
 _client = tda.auth.easy_client(
     API_KEY,
     REDIRECT_URI,
     TOKEN_PATH,
     make_webdriver)
-
 
 def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
     """This function will be used to get historical data of the portfolio ticker """
@@ -84,6 +75,7 @@ def real_time_quote(client,portfolio):
     return _response
 
 def read_spark_csv(filename):
+    """Loading the spark portfolio results for analysis in BigQuery"""
     spark_dataframe = pandas.read_csv(filename)
     return spark_dataframe
 

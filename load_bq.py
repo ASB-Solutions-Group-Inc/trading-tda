@@ -1,22 +1,15 @@
 import os
 import glob
-# import pandas as pd
-# from string import Template
-# import numpy
 import logging
-# from setup import *
-# Import to BQ
 import subprocess
 
-
 def query_example(portfolio):
-    """This function will be used to load one portfolio file with table recreate"""
+    """This function will be used to load one portfolio file with table recreate no logging passed as a variable"""
     cmd = (
         """bq load --autodetect --replace --source_format=CSV trading.trading_data output/""" 
         + portfolio
         + ".csv")
     subprocess.call(cmd, shell=True)
-
 
 def load_bq_portfolio(portfolio, log_message,count):
     """This function will be used to load data into BQ for a given portfolio"""
