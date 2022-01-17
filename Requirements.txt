@@ -9,3 +9,4 @@ pandas_ta
 virtualenv
 yfinance
 alphaVantage-api
+TA-Lib==0.4.23

@@ -13,17 +13,22 @@ def run_Strategy():
     portfolio_dataframe = pd.DataFrame()
     df = portfolio_dataframe.ta.ticker("AAPL", kind="info", lc_cols=True)
     print(df)
-    tf = "D"
-    watch = Watchlist("AAPL", tf=tf, ds_name="yahoo", timed=True)
+    # Used for example Trend Return Long Trend Below
+    macd_ = ta.macd(df["close"])
+    macdh = macd_[macd_.columns[1]]
+
+    print(macdh.tail())
+    # tf = "D"
+    # watch = Watchlist("AAPL", tf=tf, ds_name="yahoo", timed=True)
     # watch.strategy = ta.CommonStrategy # If you have a Custom Strategy, you can use it here.  
-    watch.load("AAPL", analyze=True, verbose=False)
-    duration = "1y"
-    asset = "AAPL"
-    recent = recent_bars(asset, duration)
-    asset.columns = asset.columns.str.lower()
-    asset.drop(columns=["dividends", "split"], errors="ignore", inplace=True)
-    asset = asset.copy().tail(recent)
-    print(asset)
+    # watch.load("AAPL", analyze=True, verbose=False)
+    # duration = "1y"
+    # asset = "AAPL"
+    # recent = recent_bars(asset, duration)
+    # asset.columns = asset.columns.str.lower()
+    # asset.drop(columns=["dividends", "split"], errors="ignore", inplace=True)
+    # asset = asset.copy().tail(recent)
+    # print(asset)
     # NonMPStrategy = ta.Strategy(
     # name="EMAs, BBs, and MACD",
     # description="Non Multiprocessing Strategy by rename Columns",

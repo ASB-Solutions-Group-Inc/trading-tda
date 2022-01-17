@@ -10,8 +10,8 @@ import numpy
 from tda.client import Client
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from setup import config
-from arima import calculate_rsi,convert_dataframe,calculate_arima
+from setup import *
+from arima import calculate_rsi,convert_dataframe,calculate_arima,calculate_macd,calculcate_cdl
 from load_bq import load_bq_portfolio
 
 def import_portfolio(logging):
@@ -38,9 +38,9 @@ def get_account(client, account_id, logging):
     return account
 
 _client = tda.auth.easy_client(
-    config.API_KEY,
-    config.REDIRECT_URI,
-    config.TOKEN_PATH,
+    API_KEY,
+    REDIRECT_URI,
+    TOKEN_PATH,
     make_webdriver)
 
 def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
@@ -65,6 +65,8 @@ def get_historical_data(data_portfolio, portfolio_ticker, reload, logging):
                             'date': datetime.datetime.fromtimestamp(i['datetime'] / 1000)},
                            ignore_index=True)
         data_portfolio = calculate_rsi(data_portfolio, logging)
+        data_portfolio = calculate_macd(data_portfolio, logging)
+        data_portfolio = calculcate_cdl(data_portfolio, logging)
         data_portfolio.to_csv("output/" + portfolio_ticker + ".csv", index=False)
 
 #account_positions = tda.client.Client.Account.get_account()
@@ -81,9 +83,9 @@ def read_spark_csv(filename):
 
 def main():
     """This is the main function """
-    _debug = config.DEBUG
-    _reload = config.RELOAD
-    _run_amira = config.RUN_AMIRA
+    _debug = DEBUG
+    _reload = RELOAD
+    _run_amira = RUN_AMIRA
     if _debug == 'y':
         logging.basicConfig(
             filename='app.log',
