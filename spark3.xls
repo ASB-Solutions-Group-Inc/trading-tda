@@ -1,0 +1,422 @@
+<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40"><DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>WSOD</Author><LastAuthor> WSOD </LastAuthor><Created>Fri May 6 12:04:56 EDT 2022</Created><LastSaved>Fri May 6 12:04:56 EDT 2022</LastSaved><Company>Wall Street On Demand, Inc.</Company><Version>11.9999</Version></DocumentProperties><ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel"><WindowHeight>10760</WindowHeight><WindowWidth>20480</WindowWidth><WindowTopX>0</WindowTopX><WindowTopY>0</WindowTopY><ProtectStructure>False</ProtectStructure><ProtectWindows>False</ProtectWindows></ExcelWorkbook>
+<Styles>
+<Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Bottom"/><Borders /><Font/><Interior/><NumberFormat/><Protection/>
+</Style>
+<Style ss:ID="header" >
+<Font ss:Bold="1" ss:Size="20" ss:Color="#008000"  />
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"  />
+</Style>
+<Style ss:ID="standard" >
+<Font ss:Color="#333333"  />
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"  />
+<Alignment ss:Horizontal="Left" ss:Vertical="Bottom"  />
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"  />
+</Borders>
+</Style>
+<Style ss:ID="zeebra" >
+<Font ss:Color="#333333"  />
+<Interior ss:Color="#FFCCCC" ss:Pattern="Solid"  />
+<Alignment ss:Horizontal="Left" ss:Vertical="Bottom"  />
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"  />
+</Borders>
+</Style>
+<Style ss:ID="heading" >
+<Font ss:Size="11" ss:Color="#333333"  />
+<Interior ss:Color="#CCCCCC" ss:Pattern="Solid"  />
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="3"  />
+<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="3"  />
+</Borders>
+</Style>
+<Style ss:ID="standardLINK" >
+<Font ss:Color="#3366FF"  />
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"  />
+<Alignment ss:Horizontal="Left" ss:Vertical="Bottom"  />
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"  />
+</Borders>
+</Style>
+<Style ss:ID="zeebraLINK" >
+<Font ss:Color="#3366FF"  />
+<Interior ss:Color="#FFCCCC" ss:Pattern="Solid"  />
+<Alignment ss:Horizontal="Left" ss:Vertical="Bottom"  />
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"  />
+</Borders>
+</Style>
+</Styles>
+<Worksheet ss:Name="CFRA Portfolios">
+<Table >
+<Column ss:AutoFitWidth="0" ss:Width="490" />
+<Column ss:AutoFitWidth="0" ss:Width="70" />
+<Column ss:AutoFitWidth="0" ss:Width="70" />
+<Column ss:AutoFitWidth="0" ss:Width="70" />
+<Column ss:AutoFitWidth="0" ss:Width="70" />
+<Column ss:AutoFitWidth="0" ss:Width="70" />
+<Column ss:AutoFitWidth="0" ss:Width="70" />
+<Row ss:Height="45" >
+<Cell ss:StyleID="header" ><Data ss:Type="String" >TD Ameritrade CFRA Platinum Portfolio</Data></Cell>
+<Cell ss:StyleID="header" ><Data ss:Type="String" ></Data></Cell>
+<Cell ss:StyleID="header" ><Data ss:Type="String" ></Data></Cell>
+<Cell ss:StyleID="header" ><Data ss:Type="String" ></Data></Cell>
+<Cell ss:StyleID="header" ><Data ss:Type="String" ></Data></Cell>
+<Cell ss:StyleID="header" ><Data ss:Type="String" ></Data></Cell>
+<Cell ss:StyleID="header" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="35" ss:StyleID="" >
+<Cell ss:StyleID="heading" ><Data ss:Type="String" >Company Name</Data></Cell>
+<Cell ss:StyleID="heading" ><Data ss:Type="String" >Symbol</Data></Cell>
+<Cell ss:StyleID="heading" ><Data ss:Type="String" >Fair Value</Data></Cell>
+<Cell ss:StyleID="heading" ><Data ss:Type="String" >Price</Data></Cell>
+<Cell ss:StyleID="heading" ><Data ss:Type="String" >Ranking</Data></Cell>
+<Cell ss:StyleID="heading" ><Data ss:Type="String" >STARS</Data></Cell>
+<Cell ss:StyleID="heading" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >AerCap Holdings N.V.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=AER" ><Data ss:Type="String" >AER</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >90.46</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >46.71</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Alaska Air Group, Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=ALK" ><Data ss:Type="String" >ALK</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >62.81</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >54.39</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Alphabet Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=GOOG" ><Data ss:Type="String" >GOOG</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >3010.8</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >2299.</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Alphabet Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=GOOG.L" ><Data ss:Type="String" >GOOG.L</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >3023.6</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >2282.</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >AutoNation, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=AN" ><Data ss:Type="String" >AN</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >235.65</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >115.9</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Bio-Rad Laboratories, I</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=BIO" ><Data ss:Type="String" >BIO</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >768.21</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >512.0</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >BorgWarner Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=BWA" ><Data ss:Type="String" >BWA</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >48.90</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >36.83</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Broadcom Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=AVGO" ><Data ss:Type="String" >AVGO</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >555.21</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >554.3</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >3</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Carter's, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=CRI" ><Data ss:Type="String" >CRI</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >116.70</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >84.24</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Cleveland-Cliffs Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=CLF" ><Data ss:Type="String" >CLF</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >27.53</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >25.49</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Crocs, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=CROX" ><Data ss:Type="String" >CROX</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >167.03</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >66.43</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >D.R. Horton, Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=DHI" ><Data ss:Type="String" >DHI</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >222.34</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >69.59</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >DuPont de Nemours, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=DD" ><Data ss:Type="String" >DD</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >109.00</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >65.93</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >FedEx Corporation</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=FDX" ><Data ss:Type="String" >FDX</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >279.81</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >198.7</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Five Below, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=FIVE" ><Data ss:Type="String" >FIVE</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >231.59</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >157.1</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Ford Motor Company</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=F" ><Data ss:Type="String" >F</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >65.79</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >14.16</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Fortune Brands Home & S</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=FBHS" ><Data ss:Type="String" >FBHS</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >97.34</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >71.25</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Freeport-McMoRan Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=FCX" ><Data ss:Type="String" >FCX</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >94.99</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >40.55</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Group 1 Automotive, Inc</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=GPI" ><Data ss:Type="String" >GPI</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >296.28</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >174.1</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Huntsman Corporation</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=HUN" ><Data ss:Type="String" >HUN</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >64.93</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >33.87</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >KB Home</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=KBH" ><Data ss:Type="String" >KBH</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >97.79</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >32.43</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Knight-Swift Transporta</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=KNX" ><Data ss:Type="String" >KNX</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >82.55</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >47.89</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Lennar Corporation</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=LEN" ><Data ss:Type="String" >LEN</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >251.86</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >76.49</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Lumentum Holdings Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=LITE" ><Data ss:Type="String" >LITE</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >101.92</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >81.21</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Meritage Homes Corporat</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=MTH" ><Data ss:Type="String" >MTH</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >262.68</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >82.55</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >MKS Instruments, Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=MKSI" ><Data ss:Type="String" >MKSI</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >126.33</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >113.9</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Mohawk Industries, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=MHK" ><Data ss:Type="String" >MHK</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >213.58</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >141.0</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >2</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Olin Corporation</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=OLN" ><Data ss:Type="String" >OLN</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >156.03</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >57.40</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >PTC Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=PTC" ><Data ss:Type="String" >PTC</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >115.10</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >114.2</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Robert Half Internation</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=RHI" ><Data ss:Type="String" >RHI</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >106.65</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >98.31</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Salesforce, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=CRM" ><Data ss:Type="String" >CRM</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >104.58</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >175.9</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >1</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Southwest Airlines Co.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=LUV" ><Data ss:Type="String" >LUV</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >68.37</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >46.72</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Summit Materials, Inc.</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=SUM" ><Data ss:Type="String" >SUM</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >33.06</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >27.80</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >Teck Resources Limited</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=TECK" ><Data ss:Type="String" >TECK</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >34.87</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >39.46</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >3</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >Tempur Sealy Internatio</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=TPX" ><Data ss:Type="String" >TPX</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >56.10</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >27.11</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >3</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >The Chemours Company</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=CC" ><Data ss:Type="String" >CC</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >34.27</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >33.07</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="standard" ><Data ss:Type="String" >The Goldman Sachs Group</Data></Cell>
+<Cell ss:StyleID="standardLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=GS" ><Data ss:Type="String" >GS</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >159.21</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >305.4</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >1</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="standard" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+<Row ss:Height="25" ss:StyleID="" >
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" >The TJX Companies, Inc.</Data></Cell>
+<Cell ss:StyleID="zeebraLINK" ss:HRef="http://research.tdameritrade.com/public/stocks/overview/overview.asp?symbol=TJX" ><Data ss:Type="String" >TJX</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >69.38</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >61.28</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >4</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="Number" >5</Data></Cell>
+<Cell ss:StyleID="zeebra" ><Data ss:Type="String" ></Data></Cell>
+</Row>
+</Table>
+<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel" /><x:WorksheetOptions/>
+</Worksheet>
+</Workbook>

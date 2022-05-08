@@ -2,6 +2,10 @@ pip install virtualenv
 virtualenv -v my-venv
 source my-venv/bin/activate
 export SETUPTOOLS_USE_DISTUTILS=stdlib
+export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+/Users/avnitbambah/google-cloud-sdk/install.sh
+gcloud auth activate-service-account --key-file servicekey.json
+gcloud config set project saleswebpage
 brew reinstall ta-lib
 pip install -r Requirements.txt
 

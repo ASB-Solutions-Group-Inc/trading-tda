@@ -28,9 +28,8 @@ def calculate_macd(ticker,logging):
     """This function will be used to calculate the MACD for the ticker symbol"""
     try:
         #macd_ = pta.macd(ticker['close'])
-        macd = pta.macd(ticker['close'], fast=12, slow=26, signal=9, append=True)
-        #print(macd['MACD_12_26_9'])
-        #ticker = pd.concat([ticker,macd],axis=1)
+        macd = pta.macd(ticker['close'], fast=12, slow=26, signal=9)
+        ticker = pd.concat([ticker,macd],axis=1)
     except Exception as error:
         logging.error("MACD error {0}".format(error))
     return ticker
@@ -39,15 +38,11 @@ def calculcate_cdl(ticker,logging):
     """This function will be used to calculate the cdl for the ticker symbol"""
     try: 
         df = ticker.ta.cdl_pattern(name="all")
-        print(df.head())
         ticker = pd.concat([ticker,df],axis=1)
-        #ticker['CDL_DOJI_10_0.1'] = df['CDL_DOJI_10_0.1']
-        #ticker['CDL_INSIDE'] = df['CDL_INSIDE']
     except Exception as error:
         logging.error("CDL error {0} ".format(error))
-        print(ticker.head())
+        print("CDL error {0} ".format(error))
     return ticker
-    # #print(df.head())
 
 def calculate_rsi(ticker, logging):
     """This function will be used to calculate the RSI for the ticker symbol"""

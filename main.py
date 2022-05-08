@@ -13,8 +13,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 from setup import *
 from arima import calculate_rsi,convert_dataframe,calculate_arima,calculate_macd,calculcate_cdl
 from load_bq import load_bq_portfolio
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
-def import_portfolio(logging):
+def import_portfolio(filename,logging):
     """This function will be used to import the portfolio """
     data_csv = pandas.read_csv('my-5-start-export.csv')
     logging.info("Portfolio CSV file loaded")
@@ -98,7 +100,7 @@ def main():
             filemode='w',
             format='%(name)s - %(levelname)s - %(message)s')
     # account = get_account(c, ACCOUNT_ID,logging)
-    portfolio = import_portfolio(logging)
+    portfolio = import_portfolio(FILE_NAME,logging)
     #spark_portfolio = read_spark_csv("SPARK.csv")
     #load_spark_portfolio(spark_portfolio)
     data = numpy.array(
